@@ -1,5 +1,6 @@
-import Directory from '../../components/directory/Directory.component';
 import { v4 as uuidv4 } from 'uuid';
+import { Outlet } from 'react-router-dom';
+import Directory from '../../components/directory/Directory.component';
 
 const CATEGORIES = [
     {
@@ -30,7 +31,12 @@ const CATEGORIES = [
 ];
 
 const Home = () => {
-    return <Directory categories={CATEGORIES} />;
+    return (
+        <div>
+            <Directory categories={CATEGORIES} />
+            <Outlet />
+        </div>
+    );
 };
 
 export default Home;
