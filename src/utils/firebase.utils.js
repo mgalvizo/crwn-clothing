@@ -9,6 +9,8 @@ import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
 } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
@@ -96,4 +98,15 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
 
     return await signInWithEmailAndPassword(auth, email, password);
+};
+
+export const signOutUser = async () => {
+    await signOut(auth);
+};
+
+// This observer will return back whatever you get back from onAuthStateChanged
+// Will run the callback whenever the authentication state of our auth singleton changes (sign in, sign out)
+// Adds an observer for changes to the user's sign-in state
+export const onAuthStateChangedListener = callback => {
+    onAuthStateChanged(auth, callback);
 };
