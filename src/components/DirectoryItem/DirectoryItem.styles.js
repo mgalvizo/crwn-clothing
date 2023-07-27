@@ -6,7 +6,7 @@ const BackgroundImage = styled.div`
     background-size: cover;
     background-position: center;
     // Access props from the component
-    background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+    background-image: ${({ $imageUrl }) => `url(${$imageUrl})`};
 `;
 
 const Body = styled.div`
