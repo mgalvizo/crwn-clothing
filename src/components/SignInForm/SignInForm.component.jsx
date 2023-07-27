@@ -4,9 +4,9 @@ import {
     createUserDocumentFromAuth,
     signInAuthUserWithEmailAndPassword,
 } from '../../utils/firebase.utils';
-import './SignInForm.styles.scss';
+import { SignInContainer, ButtonsContainer } from './SignInForm.styles';
 import FormInput from '../FormInput/FormInput.component';
-import Button from '../Button/Button.component';
+import Button, { BUTTON_TYPE_CLASSES } from '../Button/Button.component';
 
 const defaultFormFields = {
     email: '',
@@ -61,7 +61,7 @@ const SignInForm = () => {
     };
 
     return (
-        <div className="sign-up-container">
+        <SignInContainer>
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
@@ -82,18 +82,18 @@ const SignInForm = () => {
                     name="password"
                     value={password}
                 />
-                <div className="buttons-container">
+                <ButtonsContainer>
                     <Button type="submit">Sign In</Button>
                     <Button
+                        buttonType={BUTTON_TYPE_CLASSES.google}
                         type="button"
-                        buttonType="google"
                         onClick={signInWithGoogle}
                     >
-                        Google sign in
+                        Sign In With Google
                     </Button>
-                </div>
+                </ButtonsContainer>
             </form>
-        </div>
+        </SignInContainer>
     );
 };
 
