@@ -91,17 +91,11 @@ export const getCategoriesAndDocuments = async () => {
     const collectionRef = collection(db, 'categories');
     const q = query(collectionRef);
 
-    // fetch all dcument snapshots
+    // fetch all document snapshots
     const querySnapshot = await getDocs(q);
 
-    // build the categories with the array of snapshots
-    const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-        const { title, items } = docSnapshot.data();
-        acc[title.toLowerCase()] = items;
-        return acc;
-    }, {});
-
-    return categoryMap;
+    // Only return all document snapshots data
+    return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
 };
 
 // User creation
