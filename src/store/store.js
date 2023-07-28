@@ -3,24 +3,10 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-
+import createSagaMiddleware from 'redux-saga';
+import { rootSaga } from './rootSaga';
 // Combines all our reducers
 import { rootReducer } from './rootReducer';
-
-// Technique to show the logger only in development
-// If it is false it returns an empty array if true it returns an array with all the middleware
-const middleWares = [
-    process.env.NODE_ENV === 'development' && logger,
-    thunk,
-].filter(Boolean);
-
-// Works if the redux dev tools extension is installed
-const composeEnhancer =
-    (process.env.NODE_ENV !== 'production' &&
-        window &&
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
-    compose;
 
 // redux-persist config
 const persistConfig = {
@@ -30,7 +16,23 @@ const persistConfig = {
     whitelist: ['cart'],
 };
 
+const sagaMiddleware = createSagaMiddleware();
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// Technique to show the logger only in development
+// If it is false it returns an empty array if true it returns an array with all the middleware
+const middleWares = [
+    process.env.NODE_ENV === 'development' && logger,
+    sagaMiddleware,
+].filter(Boolean);
+
+// Works if the redux dev tools extension is installed
+const composeEnhancer =
+    (process.env.NODE_ENV !== 'production' &&
+        window &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+    compose;
 
 const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
@@ -40,5 +42,7 @@ export const store = createStore(
     undefined,
     composedEnhancers
 );
+
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);

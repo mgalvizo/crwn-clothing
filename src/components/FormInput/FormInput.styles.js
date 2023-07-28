@@ -21,7 +21,7 @@ export const FormInputLabel = styled.label`
     top: 10px;
     transition: 300ms ease all;
     // Access props and apply CSS (this was previously an applied mixin)
-    ${({ shrink }) => shrink && shrinkLabelStyles};
+    ${({ $shrink }) => $shrink && shrinkLabelStyles}
 `;
 
 export const Input = styled.input`
@@ -44,7 +44,7 @@ export const Input = styled.input`
     // Nested compopnent previously declared/imported
     &:focus ~ ${FormInputLabel} {
         // Apply CSS (this was previously an applied mixin)
-        ${shrinkLabelStyles};
+        ${shrinkLabelStyles}
     }
 `;
 
