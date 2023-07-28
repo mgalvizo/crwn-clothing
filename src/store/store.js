@@ -3,15 +3,17 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 // Combines all our reducers
 import { rootReducer } from './rootReducer';
 
 // Technique to show the logger only in development
-// If it is false it returns an empty array if true it returns an array with the middleware
-const middleWares = [process.env.NODE_ENV === 'development' && logger].filter(
-    Boolean
-);
+// If it is false it returns an empty array if true it returns an array with all the middleware
+const middleWares = [
+    process.env.NODE_ENV === 'development' && logger,
+    thunk,
+].filter(Boolean);
 
 // Works if the redux dev tools extension is installed
 const composeEnhancer =
@@ -25,7 +27,7 @@ const persistConfig = {
     key: 'root',
     // Defaults to localStorage
     storage,
-    blacklist: ['user'],
+    whitelist: ['cart'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
