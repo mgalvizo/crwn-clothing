@@ -23,13 +23,13 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // Technique to show the logger only in development
 // If it is false it returns an empty array if true it returns an array with all the middleware
 const middleWares = [
-    process.env.NODE_ENV === 'development' && logger,
+    import.meta.env.MODE === 'development' && logger,
     sagaMiddleware,
 ].filter(Boolean);
 
 // Works if the redux dev tools extension is installed
 const composeEnhancer =
-    (process.env.NODE_ENV !== 'production' &&
+    (import.meta.env.MODE !== 'production' &&
         window &&
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
     compose;

@@ -11,6 +11,6 @@ Currently, two official plugins are available:
 
 This is a complete example of an e-commerce app, check the logs for the different versions of the app.
 
-Implements hooks, SASS, routing, firebase, firestore, authentication, context, styled components, reducers, classic redux, redux persist for state in localStorage, reselect memoized selectors, redux saga,
+Implements hooks, SASS, routing, firebase, firestore, authentication, context, styled components, reducers, classic redux, redux persist for state in localStorage, reselect memoized selectors, redux saga and TypeScript.
 
 ### Libraries
