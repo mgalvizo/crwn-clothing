@@ -8,11 +8,21 @@ module.exports = {
     ],
     ignorePatterns: ['dist', '.eslintrc.cjs'],
     parser: '@typescript-eslint/parser',
-    plugins: ['react-refresh'],
+    plugins: ['react-refresh', '@jambit/typed-redux-saga'],
     rules: {
         'react-refresh/only-export-components': [
             'warn',
             { allowConstantExport: true },
         ],
     },
+    overrides: [
+        {
+            files: ['./**/*.ts'],
+            excludedFiles: ['./**/*.spec.ts'],
+            rules: {
+                '@jambit/typed-redux-saga/use-typed-effects': 'error',
+                '@jambit/typed-redux-saga/delegate-effects': 'error',
+            },
+        },
+    ],
 };

@@ -1,5 +1,5 @@
 // side effect generators
-import { takeLatest, all, call, put } from 'typed-redux-saga/macro';
+import { takeLatest, all, call, put } from 'typed-redux-saga';
 import { getCategoriesAndDocuments } from '../../utils/firebase.utils';
 import {
     fetchCategoriesSuccess,

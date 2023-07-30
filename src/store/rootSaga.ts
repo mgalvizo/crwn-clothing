@@ -1,5 +1,5 @@
 // Encapsulates all sagas
-import { all, call } from 'typed-redux-saga/macro';
+import { all, call } from 'typed-redux-saga';
 
 // Saga configuration
 import { categoriesSaga } from './categories/category.saga';

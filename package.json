@@ -12,10 +12,10 @@
     "dependencies": {
         "@stripe/react-stripe-js": "^2.1.1",
         "@stripe/stripe-js": "^1.54.1",
+        "@types/node": "^20.4.5",
         "@types/redux-logger": "^3.0.9",
         "@types/styled-components": "^5.1.26",
         "@types/uuid": "^9.0.2",
-        "babel-plugin-macros": "^3.1.0",
         "dotenv": "^16.3.1",
         "firebase": "^10.1.0",
         "react": "^18.2.0",
@@ -35,11 +35,13 @@
         "vite-plugin-svgr": "^3.2.0"
     },
     "devDependencies": {
+        "@jambit/eslint-plugin-typed-redux-saga": "^0.4.0",
         "@types/react": "^18.2.15",
         "@types/react-dom": "^18.2.7",
         "@typescript-eslint/eslint-plugin": "^6.0.0",
         "@typescript-eslint/parser": "^6.0.0",
         "@vitejs/plugin-react": "^4.0.3",
+        "babel-plugin-macros": "^3.1.0",
         "eslint": "^8.45.0",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.3",
